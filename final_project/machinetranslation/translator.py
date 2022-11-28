@@ -1,7 +1,9 @@
+"""Module docstring"""
+
 import json
+import os
 from ibm_watson import LanguageTranslatorV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-import os
 from dotenv import load_dotenv
 
 load_dotenv() # take environment variables from .env.
@@ -10,18 +12,20 @@ url = os.environ['url']
 
 authenticator = IAMAuthenticator(apikey)
 language_translator = LanguageTranslatorV3(
-    version='2018-05-01',
-    authenticator=authenticator)
+    version = '2018-05-01',
+    authenticator = authenticator)
 language_translator.set_service_url(url)
 
-def englishToFrench(englishText):
-    frenchText = language_translator.translate(
-    text=englishText,
-    model_id='en-fr').get_result()    
-    return frenchText
+def english_to_french(english_text):
+    """function docstring"""
+    french_text = language_translator.translate(
+        text = english_text,
+        model_id = 'en-fr').get_result()
+    return french_text
 
-def frenchToEnglish(frenchText):
-    englishText = language_translator.translate(
-    text=frenchText,
-    model_id='fr-en').get_result() 
-    return englishText
+def french_to_english(french_text):
+    """function docstring"""
+    english_text = language_translator.translate(
+        text = french_text,
+        model_id = 'fr-en').get_result()
+    return english_text
